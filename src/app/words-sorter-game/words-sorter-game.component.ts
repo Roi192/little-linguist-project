@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-words-sorter-game',
@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './words-sorter-game.component.css'
 })
 export class WordsSorterGameComponent {
+  @Input () id=""
 
 }

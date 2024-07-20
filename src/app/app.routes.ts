@@ -8,12 +8,12 @@ import { WordsSorterGameComponent } from './words-sorter-game/words-sorter-game.
 import { MixedLetterGameComponent } from './mixed-letter-game/mixed-letter-game.component';
 
 export const routes: Routes = [
-    {path: "", component: CategoriesListComponent},
+    {path: "", component: DashbordComponent},
     {path: "category/:id", component: CategoryFormComponent},
     {path: "newcategory", component: CategoryFormComponent},
     {path: "choose-game", component:ChooseGameComponent},
     {path: "help", component:HelppComponent},
-    {path: "dashbord", component:DashbordComponent},
-    {path: "WordSorter", component:WordsSorterGameComponent},
-    {path: "MixedLetter", component:MixedLetterGameComponent},
+    {path: "admin", component:CategoriesListComponent},
+    {path: "WordSorter/:id", component:WordsSorterGameComponent},
+    {path: "MixedLetter/:id", component:MixedLetterGameComponent},
 ];
