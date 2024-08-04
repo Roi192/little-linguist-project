@@ -1,0 +1,18 @@
+
+    <div class="game-cards-wrapper">
+        <div class="game-card-container">
+          <mat-card class="card" (click)="openCategoryDialog()">
+            <mat-card-header>
+              <mat-card-title class="game-title">{{ currentgame?.GameName }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{ currentgame?.GameDescription }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button color="primary">Start Game</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+      
+ 

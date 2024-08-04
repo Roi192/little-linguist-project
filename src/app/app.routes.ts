@@ -6,14 +6,16 @@ import { HelppComponent } from './helpp/helpp.component';
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { WordsSorterGameComponent } from './words-sorter-game/words-sorter-game.component';
 import { MixedLetterGameComponent } from './mixed-letter-game/mixed-letter-game.component';
+import { TriviaGameComponent } from './trivia-game/trivia-game.component';
 
 export const routes: Routes = [
-    {path: "", component: DashbordComponent},
-    {path: "category/:id", component: CategoryFormComponent},
-    {path: "newcategory", component: CategoryFormComponent},
-    {path: "choose-game", component:ChooseGameComponent},
-    {path: "help", component:HelppComponent},
-    {path: "admin", component:CategoriesListComponent},
-    {path: "WordSorter/:id", component:WordsSorterGameComponent},
-    {path: "MixedLetter/:id", component:MixedLetterGameComponent},
+    { path: '', component: DashbordComponent },
+    { path: 'category/:id', component: CategoryFormComponent },
+    { path: 'newcategory', component: CategoryFormComponent },
+    { path: 'choose-game', component: ChooseGameComponent },
+    { path: 'help', component: HelppComponent },
+    { path: 'admin', component: CategoriesListComponent },
+    { path: 'WordSorter/:id', component: WordsSorterGameComponent },
+    { path: 'MixedLetter/:id', component: MixedLetterGameComponent },
+    { path: 'Trivia', component: TriviaGameComponent },
 ];
