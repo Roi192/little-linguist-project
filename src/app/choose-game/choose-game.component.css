@@ -1,39 +1,22 @@
-.game-card-container {
+.container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    margin: 20px 0; /* רווח בין כרטיסים */
+    gap: 20px; /* המרחק בין כרטיסי המשחקים */
+    padding: 20px; /* רווח סביב התוכן */
   }
   
-  .card {
-    width: 100%;
-    max-width: 300px;
-    margin: 0 20px; /* רווח אופקי בין כרטיסים */
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    background-color:#f5f5f5;
+  .game-card {
+    width: 300px; /* רוחב קבוע לכרטיסי המשחק */
+    transition: background-color 0.3s ease; /* אנימציה חלקה לשינוי צבע */
+    cursor: pointer; /* מורה עכבר להצביע על כרטיס */
   }
   
-  img {
-    max-height: 200px;
-    object-fit: cover;
-    width: 100%;
+  .game-card:hover {
+    background-color: #e0e0e0; /* צבע כהה יותר בעת מעבר עכבר */
   }
   
-  .game-title {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #3f51b5;
+  /* עיצוב הכרטיסים */
+  .mat-card-header {
+    background-color: #f5f5f5; /* צבע רקע עבור כותרת הכרטיס */
   }
-  
-  mat-card-content p {
-    font-size: 1em;
-    line-height: 1.5;
-    color: #333;
-  }
-  
-  mat-card-actions {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
