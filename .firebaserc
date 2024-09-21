@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "little-linguist-cd827"
-  }
+    "default": "project-english-f5ff1",
+    "y": "project-english-f5ff1"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }
