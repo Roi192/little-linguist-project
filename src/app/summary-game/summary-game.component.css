@@ -1,0 +1,41 @@
+.summary-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #e0f7fa;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  h1 {
+    color: #00796b;
+    margin-bottom: 20px;
+  }
+  
+  .mat-table {
+    width: 100%;
+  }
+  
+  .mat-header-cell, .mat-cell {
+    text-align: center;
+    font-size: 1.2em;
+  }
+  
+  .mat-icon {
+    color: #00796b;
+  }
+  .mat-table {
+    border: 1px solid #00796b; /* גבול מסביב לטבלה */
+    border-radius: 5px; /* פינות מעוגלות */
+    overflow: hidden; /* חוסם תוכן שפורץ את הגבול */
+  }
+  .mat-icon {
+    vertical-align: middle; /* מרכז את האייקונים אנכית */
+    font-size: 1.5em; /* הגדל את גובה האייקון */
+  }
+  .red-icon {
+    color: red;
+  }
+
+    
+  

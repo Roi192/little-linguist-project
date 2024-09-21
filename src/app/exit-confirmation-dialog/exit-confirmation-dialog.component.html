@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Are you sure you want to exit?</h1>
+<div mat-dialog-content>
+  <p>If you exit, your progress will be lost.</p>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">No</button>
+  <button mat-button color="primary" (click)="onConfirm()">Yes</button>
+</div>

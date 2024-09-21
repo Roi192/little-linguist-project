@@ -1,4 +1,21 @@
-
-<div>Sort Words </div>
-<div>Category Id {{id}}</div>
-<div>Category name {{currentCategory?.name}}</div>
+<div class="game-container">
+    <h2> האם המילה שייכת לקטגוריה: {{ currentCategory?.name }}?</h2>
+    <div class="word-display">
+      <p>{{ currentWord }}</p>
+    </div>
+  
+    <div class="button-container">
+      <button (click)="checkWord(true)" mat-raised-button color="primary">כן</button>
+      <button (click)="checkWord(false)" mat-raised-button color="warn">לא</button>
+    </div>
+  
+    <div class="progress-container">
+      <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+      <div class="progress-text">
+        {{ currentWordIndex + 1 }} / {{ words.length }}
+      </div>
+    </div>
+  
+    <button (click)="confirmExit()" class="exit-button">יציאה</button>
+  </div>
+  

@@ -1,0 +1,7 @@
+<h1 mat-dialog-title>{{ data.success ? 'Congratulations!' : 'Try Again!' }}</h1>
+<div mat-dialog-content>
+  <p>{{ data.success ? 'You guessed the word correctly!' : 'Incorrect guess, try again next time!' }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="true">OK</button>
+</div>

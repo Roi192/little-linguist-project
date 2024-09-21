@@ -42,7 +42,10 @@ export class CategoriesService {
   }
 
   delete(id : number) : void {
-    let categoriesMap = this.getCategories();
+    if (id <= 0) {
+      throw new Error('Invalid category ID for deletion');
+        }
+        let categoriesMap = this.getCategories();
     categoriesMap.delete(id);
     this.setCategories(categoriesMap);
   }
@@ -58,6 +61,9 @@ export class CategoriesService {
 
   add(category : Category) : void {
     category.id = this.getNextId();
+    if(category.id===0) {
+      throw new Error('Category ID cannot be 0');
+    }
     category.lastUpdateDate = new Date();
 
     let categoriesMap = this.getCategories();
@@ -67,3 +73,4 @@ export class CategoriesService {
     this.setNextId(++category.id);
   }
 }
+console.log('Categories in localStorage:', localStorage.getItem('categories'));

@@ -25,14 +25,11 @@ import { Router } from '@angular/router';
 export class SelecttCategoryDialogComponent implements OnInit {
   selectedCategory?: Category;
   categories: Category[] = [];
-  
 
   constructor(
     public categoriesService: CategoriesService,
     public dialogRef: MatDialogRef<SelecttCategoryDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data :GameProfile ,
-    private router : Router
-    
+    @Inject(MAT_DIALOG_DATA) public data: GameProfile
   ) {}
 
   ngOnInit(): void {
@@ -41,9 +38,7 @@ export class SelecttCategoryDialogComponent implements OnInit {
 
   letsPlay(): void {
     if (this.selectedCategory) {
-      this.dialogRef.close();
-      this.router.navigate ([`${this.data.GameUrl}`,this.selectedCategory.id])
+      this.dialogRef.close({ categoryId: this.selectedCategory.id });
     }
   }
 }
-

@@ -1,17 +1,17 @@
 <div class="dialog">
-    <h1>Select Category</h1>
-    <mat-form-field>
-      <mat-select placeholder="Choose Category" [(ngModel)]="selectedCategory">
-        <mat-option *ngFor="let category of categories" [value]="category">
-          {{ category.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <div *ngIf="selectedCategory">
-      <p>{{ selectedCategory.words.length }} words</p>
-      <p>{{ selectedCategory.lastUpdateDate | date }}</p>
-    </div>
-    <button mat-raised-button color="primary" (click)="letsPlay()" [disabled]="!selectedCategory">
-      Let's play!
-    </button>
+  <h1>Select Category</h1>
+  <mat-form-field>
+    <mat-select placeholder="Choose Category" [(ngModel)]="selectedCategory">
+      <mat-option *ngFor="let category of categories" [value]="category">
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div *ngIf="selectedCategory">
+    <p>{{ selectedCategory.words.length }} words</p>
+    <p>{{ selectedCategory.lastUpdateDate | date }}</p>
   </div>
+  <button mat-raised-button color="primary" (click)="letsPlay()" [disabled]="!selectedCategory">
+    Let's play!
+  </button>
+</div>

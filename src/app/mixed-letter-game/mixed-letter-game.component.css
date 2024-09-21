@@ -1,0 +1,42 @@
+.game-container {
+    background-color: #e0f7fa;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .game-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .hebrew-word {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .shuffled-word {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .button-container {
+    margin-bottom: 20px;
+  }
+  
+  mat-progress-bar {
+    margin: 20px 0;
+  }
+  
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+  }
+  
+  mat-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+  }
+  

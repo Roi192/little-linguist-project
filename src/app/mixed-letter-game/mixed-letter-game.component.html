@@ -1,4 +1,20 @@
-<div>
-    <h2>Category Name: {{ currentCategory?.name }}</h2>
-  </div>
+<div class="game-container">
+  <h1 class="game-title">Mixed Letter Game</h1>
   
+  <p class="hebrew-word">{{ currentWord.hebrewTranslation }}</p>
+  <p class="shuffled-word">{{ shuffledLetters.join(' ') }}</p>
+
+  <input [(ngModel)]="userInput" placeholder="Type the word here..."/>
+  
+  <div class="button-container">
+    <button (click)="checkWord()">Submit</button>
+    <button (click)="resetInput()">Reset</button>
+  </div>
+
+  <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+  <div class="progress-info">
+    <span>{{ currentWordIndex }} / {{ currentCategory?.words?.length }}</span>
+  </div>
+
+  <mat-icon (click)="confirmExit()">exit_to_app</mat-icon>
+</div>

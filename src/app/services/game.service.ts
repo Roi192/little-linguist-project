@@ -7,8 +7,8 @@ import { GameProfile } from '../../shared/model/GameProfile';
 export class GameService {
   // מערך פרטי המשחקים
   private allgames: GameProfile[] = [
-    new GameProfile(1, 'Word Sorting', 'Sort words into categories', '/WordSorter',),
-    new GameProfile(2, 'Mixed Letter', 'Arrange jumbled letters to form words', '/MixedLetter',),
+    new GameProfile(1, 'Word Sorting', 'Sort words into categories', '/word-sorter',),
+    new GameProfile(2, 'Mixed Letter', 'Arrange jumbled letters to form words', '/mixed-letter',),
     new GameProfile(3, 'Trivia', 'Choose every words translation from a list of 4 option', '/Trivia',),
   ];
   constructor() { }
