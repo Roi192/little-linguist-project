@@ -1,76 +1,62 @@
-import { categories } from './../../shared/data/categories';
 import { Injectable } from '@angular/core';
+import { Firestore, collection, collectionData, doc, setDoc, deleteDoc, updateDoc, getDoc } from '@angular/fire/firestore';
 import { Category } from '../../shared/model/category';
+import { TranslatedWord } from '../../shared/model/translated-word';
+import { Language } from '../../shared/model/language';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoriesService {
-  private readonly CATEGORIES_KEY = 'categories';
-  private readonly NEXT_ID_KEY = 'nextId';
+  private categoriesCollection = collection(this.firestore, 'categories');
 
-  private getCategories() : Map<number, Category>{
-    let categoriesString = localStorage.getItem(this.CATEGORIES_KEY);
+  constructor(private firestore: Firestore) {}
 
-    if (!categoriesString) {
-      return new Map<number, Category>();
-    } else {
-      return new Map<number, Category>(JSON.parse(categoriesString));
+  async add(category: Category): Promise<void> {
+    const categoryDoc = doc(this.categoriesCollection, category.id);
+    await setDoc(categoryDoc, {
+      lastUpdate: category.lastUpdateDate,
+      name: category.name,
+      originLanguage: category.origin,
+      targetLanguage: category.target,
+      words: category.words.map(word => ({
+        origin: word.origin,
+        target: word.target,
+      })),
+    });
+  }
+
+  //async list():  {
+    //const querySnapshot = await collectionData(this.categoriesCollection, { idField: 'id' });
+    
+  //}
+
+  async get(id: string): Promise<Category> {
+    const categoryDoc = doc(this.categoriesCollection, id);
+    const categoryData = await getDoc(categoryDoc);
+    if (categoryData.exists()) {
+      const data = categoryData.data();
+      
     }
+    throw new Error('Category not found');
   }
 
-  private getNextId() : number {
-    let nextIdString = localStorage.getItem(this.NEXT_ID_KEY); 
-
-    return nextIdString ? parseInt(nextIdString) : 0;
+  async delete(id: string): Promise<void> {
+    const categoryDoc = doc(this.categoriesCollection, id);
+    await deleteDoc(categoryDoc);
   }
 
-  private setCategories(list : Map<number, Category>) : void {
-    localStorage.setItem(this.CATEGORIES_KEY, JSON.stringify(Array.from(list)));
-  }
-
-  private setNextId(id : number) : void {
-    localStorage.setItem(this.NEXT_ID_KEY, id.toString());
-  }
-
-  list() : Category[] {
-    return Array.from(this.getCategories().values());
-  }
-
-  get(id : number) : Category | undefined {
-    return this.getCategories().get(id);
-  }
-
-  delete(id : number) : void {
-    if (id <= 0) {
-      throw new Error('Invalid category ID for deletion');
-        }
-        let categoriesMap = this.getCategories();
-    categoriesMap.delete(id);
-    this.setCategories(categoriesMap);
-  }
-
-  update(category : Category) : void {
-    let categoriesMap = this.getCategories();
-
-    category.lastUpdateDate = new Date();
-    categoriesMap.set(category.id, category);
-
-    this.setCategories(categoriesMap);
-  }
-
-  add(category : Category) : void {
-    category.id = this.getNextId();
-    if(category.id===0) {
-      throw new Error('Category ID cannot be 0');
-    }
-    category.lastUpdateDate = new Date();
-
-    let categoriesMap = this.getCategories();
-    categoriesMap.set(category.id, category);
-
-    this.setCategories(categoriesMap);
-    this.setNextId(++category.id);
+  async update(id: string, category: Category): Promise<void> {
+    const categoryDoc = doc(this.categoriesCollection, id);
+    await updateDoc(categoryDoc, {
+      lastUpdate: category.lastUpdateDate,
+      name: category.name,
+      originLanguage: category.origin,
+      targetLanguage: category.target,
+      words: category.words.map(word => ({
+        origin: word.origin,
+        target: word.target,
+      })),
+    });
   }
 }
-console.log('Categories in localStorage:', localStorage.getItem('categories'));

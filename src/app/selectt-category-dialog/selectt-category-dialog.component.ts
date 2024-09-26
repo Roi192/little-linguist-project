@@ -33,7 +33,7 @@ export class SelecttCategoryDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.categories = this.categoriesService.list();
+   // this.categories = this.categoriesService.list();
   }
 
   letsPlay(): void {

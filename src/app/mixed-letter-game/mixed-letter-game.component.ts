@@ -50,7 +50,7 @@ export class MixedLetterGameComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.categoryId = +params.get('id')!;
-      this.currentCategory = this.categoriesService.get(this.categoryId);
+      //this.currentCategory = this.categoriesService.get(this.categoryId);
 
       if (this.currentCategory) {
         this.wordPoints = Math.floor(100 / this.currentCategory.words.length);
