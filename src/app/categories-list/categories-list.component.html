@@ -1,3 +1,5 @@
+<div *ngIf="!isFullyLoaded"> <mat-progress-bar mode="indeterminate"></mat-progress-bar></div>
+<div *ngIf="isFullyLoaded">
 <table mat-table [dataSource]="dataSource">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> ID</th>
@@ -38,4 +40,5 @@
   <button mat-fab color="primary" routerLink="/newcategory">
     <mat-icon>add</mat-icon>
   </button>
+</div>
 </div>

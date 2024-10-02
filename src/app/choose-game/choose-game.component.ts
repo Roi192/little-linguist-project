@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SelecttCategoryDialogComponent } from '../selectt-category-dialog/selectt-category-dialog.component';
 import { Router } from '@angular/router';
+import { Category } from '../../shared/model/category';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class ChooseGameComponent implements OnInit{
 
   ngOnInit(): void {
     this.allGames = this.gameService.getGames();
+   
   }
 
   openDialog(game: GameProfile): void {

@@ -26,7 +26,7 @@ export class MixedLetterGameComponent implements OnInit {
 
   @Input() id = '';
 
-  categoryId: number = 0;
+  categoryId?: string;
   currentCategory?: Category;
   currentWordIndex: number = 0; // ניהול האינדקס הנוכחי של המילה
   currentWord = { hebrewTranslation: '', englishWord: '' };
@@ -48,17 +48,29 @@ export class MixedLetterGameComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.categoryId = +params.get('id')!;
-      //this.currentCategory = this.categoriesService.get(this.categoryId);
-
-      if (this.currentCategory) {
-        this.wordPoints = Math.floor(100 / this.currentCategory.words.length);
-        this.shuffleWords();
-        this.setupNewWord();
-      }
+    this.route.params.subscribe(params => {
+      const id = params['id'];
+      this.categoriesService.get(id).then((category) => {
+        if (category) {
+          this.currentCategory = category; // הגדרת הקטגוריה הנוכחית
+          this.wordPoints = Math.floor(100 / this.currentCategory.words.length); // חישוב הניקוד לכל מילה
+          this.shuffleWords(); // ערבוב המילים
+          this.setupNewWord(); // הגדרת המילה הראשונה
+        }
+      }).catch(error => {
+        console.error('Error fetching category:', error);
+      });
     });
   }
+    
+
+    //  if (this.currentCategory) {
+      //  this.wordPoints = Math.floor(100 / this.currentCategory.words.length);
+        //this.shuffleWords();
+        //this.setupNewWord();
+      //}
+    //};
+  //}
   shuffleWords(): void {
     if (this.currentCategory?.words) {
       this.shuffledWords = [...this.currentCategory.words].sort(() => Math.random() - 0.5); // ערבוב המילים בקטגוריה
