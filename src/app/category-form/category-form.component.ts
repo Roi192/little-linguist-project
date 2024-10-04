@@ -41,15 +41,13 @@ export class CategoryFormComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.id) {
-      this.categoriesService.get(this.id).then(
-        (categoryFormService) => {
-        if (categoryFormService) {
-        this.currentCategory = categoryFormService;
-      }
+      this.categoriesService.get(this.id).then((categoryFromService) => {
+        if (categoryFromService) {
+          this.currentCategory = categoryFromService;
+        }
+      });
     }
-  )
   }
-}
 
   addWord() {
     this.currentCategory.words = 
@@ -66,15 +64,15 @@ export class CategoryFormComponent implements OnInit {
 
   saveCategory() {
     if (this.id) {
-      this.categoriesService.update(this.currentCategory).then(
-        () => this.router.navigate([''])
-        );
-       
+      this.categoriesService.update(this.currentCategory).then(() => {
+        this.router.navigate(['']); // ניווט לאחר עדכון
+      });
     } else {
-      this.categoriesService.add(this.currentCategory).then(
-        () => this.router.navigate([''])
-      );
+      this.categoriesService.add(this.currentCategory).then(() => {
+        this.router.navigate(['']); // ניווט לאחר הוספה
+      });
     }
+  
 
     this.router.navigate(['']);
   }

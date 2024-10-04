@@ -1,33 +1,26 @@
-<h1>Game Summary</h1>
-
-<table mat-table [dataSource]="results" class="mat-elevation-z8">
-  <!-- Hebrew Word Column -->
-  <ng-container matColumnDef="hebrew">
-    <th mat-header-cell *matHeaderCellDef> Hebrew Word </th>
-    <td mat-cell *matCellDef="let result"> {{result.hebrew}} </td>
-  </ng-container>
-
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <!-- English Word Column -->
   <ng-container matColumnDef="english">
     <th mat-header-cell *matHeaderCellDef> English Word </th>
-    <td mat-cell *matCellDef="let result"> {{result.english}} </td>
+    <td mat-cell *matCellDef="let element"> {{ element.english }} </td>
   </ng-container>
 
-  <!-- Result Icon Column -->
-  <ng-container matColumnDef="result">
+  <!-- Category Column -->
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef> Category </th>
+    <td mat-cell *matCellDef="let element"> {{ element.category }} </td>
+  </ng-container>
+
+  <!-- Success Column -->
+  <ng-container matColumnDef="success">
     <th mat-header-cell *matHeaderCellDef> Result </th>
-    <td mat-cell *matCellDef="let result">
-      <mat-icon *ngIf="result.success" color="primary" >check_circle</mat-icon>
-      <mat-icon *ngIf="!result.success" color="warn" class ="red-icon">cancel</mat-icon>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon *ngIf="element.success">check_circle</mat-icon>
+      <mat-icon *ngIf="!element.success">cancel</mat-icon>
     </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="['hebrew', 'english', 'result']"></tr>
-  <tr mat-row *matRowDef="let row; columns: ['hebrew', 'english', 'result'];"></tr>
+  <!-- Table Header and Row Definitions -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<div>
-  <p>Total Points: {{points}}</p>
-  <button mat-raised-button color="primary" (click)="router.navigate(['/choose-game'])">
-    Back to Game Selection
-  </button>
-</div>

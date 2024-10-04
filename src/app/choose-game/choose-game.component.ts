@@ -28,9 +28,23 @@ export class ChooseGameComponent implements OnInit{
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    this.allGames = this.gameService.getGames();
-   
+  async ngOnInit() {
+    //this.allGames = await this.gameService.getGames();
+    this.loadGames ()
+  }
+
+ 
+
+  loadGames() {
+    this.allGames = []; // Reset the games array before loading new games
+    this.gameService.getGames().then((games: GameProfile[]) => {
+      const uniqueGames = games.filter((game, index, self) =>
+        index === self.findIndex((g) => g.GameId === game.GameId)
+      );
+      this.allGames = uniqueGames;
+    }).catch(error => {
+      console.error("Error loading games: ", error);
+    });
   }
 
   openDialog(game: GameProfile): void {

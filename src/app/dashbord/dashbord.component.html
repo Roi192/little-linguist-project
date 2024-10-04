@@ -1,1 +1,74 @@
-<p>dashbord works!</p>
+<body>
+<div class="dashboard-container">
+  <div class="card-row">
+    <mat-card class="dashboard-card total-points-card">
+      <h2 class="dashboard-number">{{ totalPoints }}</h2>
+      <p class="dashboard-label">Total Points</p>
+    </mat-card>
+    <mat-card class="dashboard-card games-played-card">
+      <h2 class="dashboard-number">{{ gamesPlayed }}</h2>
+      <p class="dashboard-label">Games Played</p>
+    </mat-card>
+    <mat-card class="dashboard-card average-points-card">
+      <h2 class="dashboard-number">{{ averagePoints }}</h2>
+      <p class="dashboard-label">Average Points</p>
+    </mat-card>
+  </div>
+
+  <div class="card-row">
+    <!-- Highest Average Score Card -->
+    <mat-card class="game-card highest-average-card">
+      <mat-card-header>
+        <mat-card-title class="game-title">Game with Highest Average Score</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h2 *ngIf="highestScoreAvg" class="highlight-game-name">{{ highestScoreAvg.gameName }} <span class="up-arrow">↑</span></h2>
+        <p *ngIf="highestScoreAvg">Average: {{ highestScoreAvg.averagePoints | number:'1.0-0' }}</p>
+        <p *ngIf="!highestScoreAvg">No games found.</p>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Lowest Average Score Card -->
+    <mat-card class="game-card lowest-average-card">
+      <mat-card-header>
+        <mat-card-title class="game-title">Game with Lowest Average Score</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h2 *ngIf="lowestScoreAvg" class="highlight-game-name">{{ lowestScoreAvg.gameName }} <span class="down-arrow">↓</span></h2>
+        <p *ngIf="lowestScoreAvg">Average: {{ lowestScoreAvg.averagePoints | number:'1.0-0' }}</p>
+        <p *ngIf="!lowestScoreAvg">No games found.</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="card-row">
+    <mat-card class="category-card learned-card">
+      <h2 class="category-number">{{ categoriesLearned }}</h2>
+      <p class="category-label">Categories Learned</p>
+    </mat-card>
+    <mat-card class="category-card not-learned-card">
+      <h2 class="category-number">{{ categoriesNotLearned }}</h2>
+      <p class="category-label">Categories Not Learned</p>
+    </mat-card>
+    <mat-card class="category-card perfect-percentage-card">
+      <h2 class="category-number">{{ perfectGamePercentage.toFixed(2) }}%</h2>
+      <p class="category-label">Perfect Game Percentage</p>
+    </mat-card>
+    <mat-card class="category-card most-played-card">
+      <h2 class="category-number">{{ mostPlayedCategory }}</h2>
+      <p class="category-label">Most Played Category</p>
+    </mat-card>
+  </div>
+
+  <div class="card-row">
+    <mat-card class="category-card monthly-challenge-card">
+      <h2 class="category-number">{{ monthlyChallengeGamesPlayed }}</h2>
+      <p class="category-label">Games this months left {{ gamesToCompleteChallenge }} more to complete the challange!</p>
+    </mat-card>
+    <mat-card class="category-card consecutive-days-card">
+      <h2 class="category-number">{{ consecutiveDaysPlayed }}</h2>
+      <p class="category-label">Days strike</p>
+    </mat-card>
+  </div>
+</div>
+</body>

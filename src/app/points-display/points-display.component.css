@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* המרחק בין כרטיסי המשחקים */
+    padding: 20px; /* רווח סביב התוכן */
+  }
+  
+  .game-card {
+    width: 300px; /* רוחב קבוע לכרטיסי המשחק */
+    transition: background-color 0.3s ease; /* אנימציה חלקה לשינוי צבע */
+    cursor: pointer; /* מורה עכבר להצביע על כרטיס */
+  }
+  
+  .game-card:hover {
+    background-color: #e0e0e0; /* צבע כהה יותר בעת מעבר עכבר */
+  }
+  
+  /* עיצוב הכרטיסים */
+  .mat-card-header {
+    background-color: #f5f5f5; /* צבע רקע עבור כותרת הכרטיס */
+  }

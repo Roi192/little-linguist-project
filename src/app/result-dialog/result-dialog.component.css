@@ -1,0 +1,54 @@
+.dialog-title {
+    text-align: center;
+    color: #4CAF50; /* ירוק */
+    font-weight: bold;
+  }
+  
+  .dialog-content {
+    text-align: center;
+    padding: 20px; /* ריווח פנימי */
+  }
+  
+  .dialog-message {
+    font-size: 16px; /* גודל טקסט נעים */
+    color: #555; /* צבע אפור כהה */
+  }
+  
+  .dialog-actions {
+    display: flex;
+    justify-content: center; /* מיישר את הכפתור במרכז */
+    margin-top: 20px; /* ריווח עליון */
+  }
+  
+  .dialog-button {
+    background-color: #4CAF50; /* צבע רקע ירוק */
+    color: white; /* צבע טקסט לבן */
+    font-weight: bold;
+    padding: 10px 20px; /* ריווח פנימי */
+    border-radius: 5px; /* פינות מעוגלות */
+  }
+  
+  .dialog-button:hover {
+    background-color: #45a049; /* צבע רקע כהה יותר כשמעבירים מעל */
+  }
+  .success-message {
+    color: #4CAF50; /* ירוק להצלחה */
+  }
+  
+  .error-message {
+    color: #F44336; /* אדום לכישלון */
+    font-weight: bold; /* חיזוק הטקסט */
+  }
+  .success-title {
+    color: #4CAF50; /* ירוק להצלחה */
+  }
+  
+  .error-title {
+    color: #F44336; /* אדום לכישלון */
+  }
+  .success-title, .error-title {
+    text-align: center; /* ממורכז */
+    font-weight: bold; /* עבה */
+    font-size: 24px; 
+  }  
+  

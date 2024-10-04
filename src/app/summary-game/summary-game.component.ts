@@ -1,7 +1,8 @@
+import { CdkTableDataSourceInput } from '@angular/cdk/table';
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,23 +14,24 @@ import { Router } from '@angular/router';
 })
 export class SummaryGameComponent implements OnInit {
   points: number = 0;
-  results: { hebrew: string, english: string, success: boolean }[] = [];
+  displayedColumns: string[] = ['english', 'category', 'success'];
+  dataSource = new MatTableDataSource<any>();
+  results: { hebrew: string, english: string, category: string, success: boolean }[] = [];
 
-  // שנה את router ל-public
   public router: Router;
 
   constructor(router: Router) {
-    this.router = router; // אתחול ה-router
+    this.router = router;
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as {
       points: number;
-      results: { hebrew: string; english: string; success: boolean }[];
+      results: { hebrew: string; english: string; category: string; success: boolean }[];
     };
 
-    // קבלת הנתונים מהמשחק
     if (state) {
       this.points = state.points;
       this.results = state.results;
+      this.dataSource.data = this.results;
     }
   }
 

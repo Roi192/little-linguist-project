@@ -34,9 +34,14 @@ export class SelecttCategoryDialogComponent implements OnInit {
 
   ngOnInit(): void {
    // this.categories = this.categoriesService.list();
+    this.loadCategory();
   }
+    private async loadCategory (){
+      this.categories = await this.categoriesService.list();
 
-  letsPlay(): void {
+    }
+
+     letsPlay(): void {
     if (this.selectedCategory) {
       this.dialogRef.close({ categoryId: this.selectedCategory.id });
     }

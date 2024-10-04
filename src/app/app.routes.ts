@@ -9,6 +9,7 @@ import { MixedLetterGameComponent } from './mixed-letter-game/mixed-letter-game.
 import { TriviaGameComponent } from './trivia-game/trivia-game.component';
 import { NgModule } from '@angular/core';
 import { SummaryGameComponent } from './summary-game/summary-game.component';
+import { SummarySortWordComponent } from './summary-sort-word/summary-sort-word.component';
 
 export const routes: Routes = [
   { path: '', component: DashbordComponent },
@@ -21,6 +22,7 @@ export const routes: Routes = [
   { path: 'mixed-letter/:id', component: MixedLetterGameComponent },
   { path: 'trivia/:id', component: TriviaGameComponent },
   { path: 'summary', component: SummaryGameComponent },
+  { path: 'summary-sort-word', component: SummarySortWordComponent },
 ];
 
 @NgModule({

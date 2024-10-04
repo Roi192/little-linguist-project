@@ -1,0 +1,143 @@
+
+.dashboard-container {
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7, #ffdde1,#ffcc61,#7b7bff, #a6a6ff, #5454b2);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+  padding: 20px;
+  min-height: 100vh; 
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the content */
+  margin: 20px; /* Add some margin to the container */
+}
+
+
+.card-row {
+  display: flex; /* Arrange cards in a row */
+  justify-content: space-between; /* Space between the cards */
+  width: 100%; /* Full width */
+  margin-bottom: 20px; /* Add space below the row */
+}
+
+.dashboard-card {
+  flex: 1; /* Cards take equal space */
+  margin: 0 10px; /* Space between cards */
+  border-radius: 15px; /* Rounded corners */
+  padding: 20px; /* Padding inside the cards */
+  color: #fff; /* Text color */
+  display: flex; /* Use flexbox for centering */
+  flex-direction: column; /* Arrange children vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  height: 150px; /* Fixed height for square shape */
+  min-width: 150px; /* Ensure the cards are not too narrow */
+  box-sizing: border-box; /* Include padding in width/height */
+}
+.dashboard-card:hover, .game-card:hover, .category-card:hover {
+  transform: scale(1.05);
+}
+.total-points-card {
+  background-color: #4caf50; /* Green */
+}
+
+.games-played-card {
+  background-color: #2196f3; /* Blue */
+}
+
+.average-points-card {
+  background-color: #ff9800; /* Orange */
+}
+
+.dashboard-number {
+  font-size: 2.5em; /* Larger font size for numbers */
+  font-weight: bold; /* Bold text */
+  margin: 0; /* Remove default margin */
+}
+
+.dashboard-label {
+  font-size: 1em; /* Larger font size for labels */
+  margin-top: 5px; /* Space above labels */
+  text-align: center; /* Center align the labels */
+}
+.highest-average-card {
+  background-color: #c8e6c9; /* Light green */
+}
+
+.lowest-average-card {
+  background-color: #ffccbc; /* Light red */
+}
+.highlight-game-name {
+  font-size: 2.5rem; /* Bigger font size for game name */
+  font-weight: bold;
+  color: #3f51b5; /* Color for game name */
+}
+.up-arrow, .down-arrow {
+  font-size: 3rem; /* Arrow size */
+}
+
+mat-card-content p {
+  font-size: 1.2rem;
+}
+.highlight-game-name {
+  font-size: 2rem; /* טקסט גדול */
+  color: #ff4500; /* צבע טקסט */
+}
+
+.category-number {
+  font-size: 2.5rem; /* טקסט גדול */
+  color: #2e8b57; /* צבע טקסט */
+}
+
+.category-label {
+  font-size: 1rem; /* טקסט קטן יותר */
+  color: #555; /* צבע טקסט */
+}
+.learned-card {
+  background-color: #d1e7dd; /* צבע ידידותי */
+}
+
+.not-learned-card {
+  background-color: #f8d7da; /* צבע ידידותי */
+}
+
+.perfect-percentage-card {
+  background-color: #cfe2f3; /* צבע ידידותי */
+}
+
+.most-played-card {
+  background-color: #fff3cd; /* צבע ידידותי */
+}
+.category-card {
+  flex: 1;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 15px; /* פינות מעוגלות */
+  text-align: center; /* ממרכז את התוכן */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+  height: 150px; /* גובה קבוע כדי לשמור על ריבוע */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* מרכז את התוכן אנכית */
+}
+.monthly-challenge-card {
+  background: linear-gradient(135deg, #ff6f61, #ff9a8b, #ffcc61); /* כתום אדמדם עד צהוב */
+}
+
+.consecutive-days-card {
+  background: linear-gradient(135deg, #7b7bff, #a6a6ff, #5454b2); /* כחול סגול עד סגול כהה */
+}

@@ -1,0 +1,29 @@
+<div class="game-container" *ngIf="shuffledWords.length">
+ 
+    <mat-icon class="exit-icon" (click)="confirmExit()">logout</mat-icon>
+    
+  
+
+  <h1 class="game-title">Sorter Game</h1> <!-- כותרת המשחק -->
+  
+  <div class="points-container">
+      <mat-icon class="dollar-icon">attach_money</mat-icon> <!-- אייקון דולר -->
+      <span class="points">{{ points }}</span> <!-- טקסט הנקודות -->
+  </div>
+  
+  <!-- Displaying the word and category question -->
+  <p class="question">
+    Does the word <span class="highlight">{{ shuffledWords[currentWordIndex].english }}</span> belong to the category <span class="category">{{ currentCategory?.name }}</span>?
+  </p>
+  
+  <div class="button-container">
+    <button mat-raised-button color="primary" (click)="checkAnswer(true)" class="yes-button">Yes</button>
+    <button mat-raised-button color="warn" (click)="checkAnswer(false)" class="no-button">No</button>
+  </div>
+
+<div class="progress-container">
+  <span class="progress-info-left">{{ currentWordIndex + 1 }}</span> <!-- מספר המילה הנוכחית -->
+  <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+  <span class="progress-info-right">{{ currentCategory?.words?.length }}</span> <!-- סך המילים -->
+</div>
+</div>

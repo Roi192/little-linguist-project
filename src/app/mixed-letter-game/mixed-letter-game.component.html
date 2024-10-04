@@ -1,20 +1,28 @@
 <div class="game-container">
   <h1 class="game-title">Mixed Letter Game</h1>
-  
+
+  <mat-icon class="exit-icon" (click)="confirmExit()">logout</mat-icon> <!-- שינינו את האייקון לאייקון 'logout' -->
+
+  <div class="score-display">
+    <i class="fas fa-dollar-sign dollar-icon"></i>
+    <span>{{ totalPoints }}</span>
+  </div>
+
   <p class="hebrew-word">{{ currentWord.hebrewTranslation }}</p>
   <p class="shuffled-word">{{ shuffledLetters.join(' ') }}</p>
 
-  <input [(ngModel)]="userInput" placeholder="Type the word here..."/>
-  
+  <input 
+    [(ngModel)]="userInput" class="word-input"
+    placeholder="Type the word here..." 
+  />
   <div class="button-container">
-    <button (click)="checkWord()">Submit</button>
-    <button (click)="resetInput()">Reset</button>
+    <button mat-raised-button class="game-button submit-button" (click)="checkWord()">Submit</button>
+    <button mat-raised-button class="game-button reset-button" (click)="resetInput()">Reset</button>
   </div>
 
-  <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
-  <div class="progress-info">
-    <span>{{ currentWordIndex }} / {{ currentCategory?.words?.length }}</span>
+  <div class="progress-container">
+    <span class="progress-info-left">{{ currentWordIndex + 1 }}</span> <!-- מספר המילה הנוכחית -->
+    <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+    <span class="progress-info-right">{{ currentCategory?.words?.length }}</span> <!-- סך המילים -->
   </div>
-
-  <mat-icon (click)="confirmExit()">exit_to_app</mat-icon>
 </div>

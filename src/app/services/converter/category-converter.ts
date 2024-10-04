@@ -18,6 +18,7 @@ export const CategoryConverter = {
             LanguageOrigin: categoryToSave.origin,
             LanguageTarget: categoryToSave.target,
             LastUpdate: Timestamp.fromDate(categoryToSave.lastUpdateDate),
+            //LastUpdate: categoryToSave.lastUpdateDate ? Timestamp.fromDate(categoryToSave.lastUpdateDate) : null,
             words: wordsArr
         };
     },
@@ -35,7 +36,9 @@ export const CategoryConverter = {
                 category.words.push(new TranslatedWord(words[i].origin, words[i].target));
             }
         }
-        category.lastUpdateDate = data['LastUpdate'].toDate();
+        //category.lastUpdateDate = data['lastUpdate'].toDate();
+        //return category;
+        category.lastUpdateDate = data['LastUpdate'] ? data['LastUpdate'].toDate() : null;
         return category;
     }
 };

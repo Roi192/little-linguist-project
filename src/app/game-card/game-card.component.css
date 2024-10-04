@@ -1,60 +1,24 @@
-.body {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 20px;
-    background-color: #f5f5f5; 
+.card {
+  cursor: pointer;
+  background-color: #f9f9f9; /* צבע רקע לתיבה */
+  border-radius: 15px; /* עיגול פינות */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* הצללה לתיבה */
+  margin: 15px; /* מרווח בין תיבות */
+  transition: transform 0.2s; /* אפקט שינוי גודל */
 }
-.game-cards-wrapper {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 20px;
-    background-color: #f5f5f5; /* צבע רקע לעמוד */
-  }
-  
-  .game-card-container {
-    margin: 10px;
-    width: 300px; /* רוחב קבוע לכרטיס */
-    height: 300px; /* גובה קבוע לכרטיס */
-    box-sizing: border-box;
-  }
-  
-  .card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    text-align: center; /* ממרכז את כל הטקסט בכרטיס */
-  }
-  
-  img {
-    height: 200px;
-    object-fit: cover;
-    width: 100%;
-  }
-  
-  .game-title {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #3f51b5;
-    margin: 0;
-    text-align: center;
-  }
-  
-  mat-card-content p {
-    font-size: 1em;
-    line-height: 1.5;
-    color: #333;
-    margin: 0 auto;
-  }
-  
-  mat-card-actions {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
-  }
-  
+
+.card:hover {
+  transform: scale(1.05); /* הגדלת התיבה בזמן ריחוף */
+}
+
+.game-title {
+  font-weight: bold; /* הדגשה */
+  color: #4CAF50; /* צבע ירוק כמו שציינת */
+  font-size: 1.5em; /* גודל גופן גדול יותר */
+}
+
+mat-card-content p {
+  font-size: 1em; /* גודל טקסט אחיד */
+  color: #333; /* צבע טקסט כהה */
+  margin: 10px 0; /* מרווח עליון ותחתון */
+}

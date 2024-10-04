@@ -1,22 +1,72 @@
+/* רקע כללי של הדף */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif; /* הגדרת גופן */
+  background-color: #e8f5e9; /* צבע הרקע של הדף, ניתן לשנות לצבע המתאים ל-summary-game */
+  height: 100vh; /* גובה של כל הדף */
+}
+
+/* מרכז את התוכן */
 .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px; /* המרחק בין כרטיסי המשחקים */
-    padding: 20px; /* רווח סביב התוכן */
-  }
-  
-  .game-card {
-    width: 300px; /* רוחב קבוע לכרטיסי המשחק */
-    transition: background-color 0.3s ease; /* אנימציה חלקה לשינוי צבע */
-    cursor: pointer; /* מורה עכבר להצביע על כרטיס */
-  }
-  
-  .game-card:hover {
-    background-color: #e0e0e0; /* צבע כהה יותר בעת מעבר עכבר */
-  }
-  
-  /* עיצוב הכרטיסים */
-  .mat-card-header {
-    background-color: #f5f5f5; /* צבע רקע עבור כותרת הכרטיס */
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* ממורכז למעלה */
+  height: 100%; /* התפרשות על כל גובה הדף */
+}
+
+/* עיצוב כותרת */
+.title {
+  font-size: 2.5em; /* גודל הכותרת */
+  margin-bottom: 20px; /* רווח תחתון */
+  color: #4caf50; /* צבע ירוק לכותרת */
+  text-align: center; /* ממורכז */
+}
+
+/* עיצוב קופסאות המשחקים */
+.game-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* עד 3 תיבות בשורה */
+  gap: 10px; /* רווח בין התיבות */
+  width: 100%; /* התפרשות על כל רוחב הדף */
+  max-width: 1200px; /* רוחב מקסימלי של קופסאות המשחקים */
+  padding: 0 20px; /* רווחים פנימיים */
+}
+
+/* עיצוב קופסה אחת של משחק */
+.game-card-container {
+  width: 100%; /* רוחב התיבה */
+}
+
+/* עיצוב הקופסה */
+.game-card {
+  width: 200px; /* רוחב הקופסה */
+  height: 200px; /* גובה הקופסה שווה לרוחב */
+  margin: 15px; /* רווח בין הקופסאות */
+  border-radius: 15px; /* עיגול פינות */
+  cursor: pointer; /* אייקון יד על הקופסה */
+  transition: transform 0.2s; /* אנימציה בזמן לחיצה */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* למרכז את התוכן */
+  align-items: center; /* למרכז את התוכן */
+  background-color: #ffffff; /* צבע הרקע של הקופסה */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* צל */
+}
+
+/* אפקט ה-hover */
+.game-card:hover {
+  transform: scale(1.05); /* הגדלה קלה כשעוברים עם העכבר */
+}
+
+/* עיצוב הכותרת בתוך הקופסה */
+.game-card-title {
+  color: #4caf50; /* צבע ירוק לכותרת */
+  font-weight: bold; /* מודגש */
+}
+
+/* עיצוב התיאור */
+.game-description {
+  font-size: 1em; /* גודל טקסט התיאור */
+}

@@ -28,10 +28,10 @@ export class CategoriesListComponent implements OnInit {
   constructor(private categoriesService : CategoriesService, private dialogService : MatDialog) {}
 
   ngOnInit(): void {
-    //this.dataSource = this.categoriesService.list();
+    
     this.categoriesService.list(). then((result:Category[])=>{
       this.allCategory = result;
-      //this.dataSource = result;
+      this.dataSource = result;
       this.isFullyLoaded = true;
     })
   }
@@ -39,18 +39,17 @@ allCategory:Category[] =[];
 
 
 deleteCategory(id: string, name: string) {
-  let dialogRef = this.dialogService.open(DeleteCategoryDialogComponent, {data: name});
-
-  dialogRef.afterClosed().subscribe(result => {
-    if (result) {
-      this.categoriesService.delete(id).then(() => {
-        this.categoriesService.list().then(
-          (result: Category[]) => {
-            this.dataSource = result;  // Ensure the table is updated
+  const dialogRef = this.dialogService.open(DeleteCategoryDialogComponent, {data: name});
+            dialogRef.afterClosed().subscribe((deletionResult) => {
+              if (deletionResult) {
+                this.categoriesService.delete(id).then(() => {
+                  this.categoriesService.list().then ((result:Category []) =>(this.allCategory=result));
+                  
+                });
+              }
+            });
           }
-        );
-      });
-    }
-  });
-}
-}
+        }
+  
+
+  

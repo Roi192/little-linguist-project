@@ -1,0 +1,42 @@
+.dialog-title {
+    font-size: 26px; /* גודל טקסט גדול יותר */
+    color: #2c3e50; /* צבע כהה, אך מזמין */
+    text-align: center; /* מרכז את הכותרת */
+    margin-bottom: 16px; /* רווח תחתון */
+  }
+  
+  .dialog-content {
+    font-size: 20px; /* גודל טקסט נוח לקריאה */
+    color: #34495e; /* צבע כהה אך רך */
+    text-align: center; /* מרכז את הטקסט */
+    padding: 16px; /* רווח פנימי לנוחות */
+    background-color: #ecf0f1; /* צבע רקע בהיר */
+    border-radius: 8px; /* פינות מעוגלות */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* צל עדין */
+  }
+  
+  .cancel-button {
+    background-color: #e74c3c; /* צבע אדום כהה */
+    color: white; /* צבע טקסט לבן */
+    font-weight: bold; /* טקסט בולט */
+    border-radius: 4px; /* פינות מעוגלות */
+    padding: 10px 20px; /* רווחים פנימיים */
+    margin-right: 8px; /* רווח בין הכפתורים */
+  }
+  
+  .confirm-button {
+    background-color: #2ecc71; /* צבע ירוק כהה */
+    color: white; /* צבע טקסט לבן */
+    font-weight: bold; /* טקסט בולט */
+    border-radius: 4px; /* פינות מעוגלות */
+    padding: 10px 20px; /* רווחים פנימיים */
+  }
+  
+  /* כדי לשפר את המראה הכללי */
+  .mat-dialog-container {
+    background-color: #ffffff; /* צבע רקע לבן */
+    border-radius: 12px; /* פינות מעוגלות */
+    padding: 20px; /* רווחים סביב הדיאלוג */
+    max-width: 400px; /* רוחב מקסימלי של הדיאלוג */
+  }
+  

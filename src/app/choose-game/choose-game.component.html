@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"  />
-        <meta name="viewport" content="width-device-width, initial-scale=1.0" />
-        <title>Choose Game</title>
-    </head>
-    <body>
-        <div class="container">
-            <div *ngFor="let game of allGames">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choose Game</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Choose Your Game</h1>
+        <div class="game-cards">
+            <div *ngFor="let game of allGames" class="game-card-container">
                 <mat-card class="game-card" (click)="openDialog(game)">
                     <mat-card-header>
-                        <mat-card-title>{{game.GameName}}</mat-card-title>
+                        <mat-card-title class="game-card-title">{{ game.GameName }}</mat-card-title>
                     </mat-card-header>
                     <mat-card-content>
-                        <p class="game-description">{{game.GameDescription}}</p>
+                        <p class="game-description">{{ game.GameDescription }}</p>
                     </mat-card-content>
                 </mat-card>
             </div>
         </div>
-    </body>
+    </div>
+</body>
 </html>

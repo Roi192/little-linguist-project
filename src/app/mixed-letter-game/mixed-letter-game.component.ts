@@ -10,6 +10,10 @@ import { CommonModule } from '@angular/common';
 import { ResultDialogComponent } from '../result-dialog/result-dialog.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { SummaryGameComponent } from '../summary-game/summary-game.component';
+import { PointsDisplayComponent } from '../points-display/points-display.component';
+import { GameResultService } from '../services/game-result.service';
+import { GameResult } from '../../shared/model/GameResult';
+import { GameService } from '../services/game.service';
 
 
 
@@ -28,23 +32,25 @@ export class MixedLetterGameComponent implements OnInit {
 
   categoryId?: string;
   currentCategory?: Category;
-  currentWordIndex: number = 0; // ניהול האינדקס הנוכחי של המילה
+  currentWordIndex: number = 0;
   currentWord = { hebrewTranslation: '', englishWord: '' };
   shuffledLetters: string[] = [];
   userInput: string = '';
-  points: number = 0; // ניקוד
-  progress: number = 0; // פרוגרס בר
+  points: number = 0;
+  progress: number = 0;
   results: { hebrew: string, english: string, success: boolean }[] = [];
   totalPoints: number = 0;
   wordPoints: number = 0;
   shuffledWords: { target: string, origin: string }[] = [];
-
+  dialogOpen: boolean = false;
 
   constructor(
     public categoriesService: CategoriesService,
     public dialog: MatDialog,
     public router: Router,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private gameResultService: GameResultService,
+    private gameService: GameService // הוסף את GameService
   ) {}
 
   ngOnInit(): void {
@@ -52,28 +58,20 @@ export class MixedLetterGameComponent implements OnInit {
       const id = params['id'];
       this.categoriesService.get(id).then((category) => {
         if (category) {
-          this.currentCategory = category; // הגדרת הקטגוריה הנוכחית
-          this.wordPoints = Math.floor(100 / this.currentCategory.words.length); // חישוב הניקוד לכל מילה
-          this.shuffleWords(); // ערבוב המילים
-          this.setupNewWord(); // הגדרת המילה הראשונה
+          this.currentCategory = category;
+          this.wordPoints = Math.floor(100 / this.currentCategory.words.length);
+          this.shuffleWords();
+          this.setupNewWord();
         }
       }).catch(error => {
         console.error('Error fetching category:', error);
       });
     });
   }
-    
 
-    //  if (this.currentCategory) {
-      //  this.wordPoints = Math.floor(100 / this.currentCategory.words.length);
-        //this.shuffleWords();
-        //this.setupNewWord();
-      //}
-    //};
-  //}
   shuffleWords(): void {
     if (this.currentCategory?.words) {
-      this.shuffledWords = [...this.currentCategory.words].sort(() => Math.random() - 0.5); // ערבוב המילים בקטגוריה
+      this.shuffledWords = [...this.currentCategory.words].sort(() => Math.random() - 0.5);
     }
   }
 
@@ -92,41 +90,63 @@ export class MixedLetterGameComponent implements OnInit {
     let shuffled: string;
     do {
       shuffled = word.split('').sort(() => Math.random() - 0.5).join('');
-    } while (shuffled === word); // אם הערבוב זהה למילה המקורית, נבצע ערבוב מחדש
+    } while (shuffled === word);
     return shuffled;
   }
 
   checkWord(): void {
     const isSuccess = this.userInput === this.currentWord.englishWord;
-  
-    // הוסף את התוצאה למערך
+
     if (this.currentCategory) {
       this.results.push({
         hebrew: this.currentWord.hebrewTranslation,
         english: this.currentWord.englishWord,
         success: isSuccess
       });
-  
+
       if (isSuccess) {
-        this.totalPoints += this.wordPoints; // עדכון הנקודות
+        this.totalPoints += this.wordPoints;
       }
-  
-      this.showResultDialog(isSuccess); // הצגת דיאלוג הצלחה או כישלון
-  
-      // עדכון ה-Progress Bar
-      this.progress = ((this.currentWordIndex + 1) / this.currentCategory.words.length) * 100; 
-  
-      // הכנה למילה הבאה
+
+      this.showResultDialog(isSuccess);
+      this.progress = ((this.currentWordIndex + 1) / this.currentCategory.words.length) * 100;
+
       this.currentWordIndex++;
-      
+
       if (this.currentWordIndex < this.currentCategory.words.length) {
         this.setupNewWord();
       } else {
-        this.navigateToSummary(); // ניווט למסך סיכום
+        if (this.totalPoints === this.wordPoints * this.currentCategory.words.length) {
+          this.totalPoints = 100;
+        }
+        this.navigateToSummary();
       }
     } else {
       console.error('currentCategory is undefined');
     }
+  }
+
+  navigateToSummary(): void {
+    const currentGameId = 'game-1'; // קביעת ה-ID ל-'game-1'
+
+    const gameResult = new GameResult(
+      this.currentCategory?.id || '',
+      currentGameId, // השתמש ב-ID המוגדר
+      new Date(),
+      this.totalPoints
+    );
+
+    this.gameResultService.addGameResult(gameResult).then(() => {
+      console.log('Game result added successfully');
+      this.router.navigate(['/summary'], { state: { points: this.totalPoints, results: this.results } });
+    }).catch(error => {
+      console.error('Error adding game result:', error);
+    });
+}
+
+  private generateUniqueId(): string {
+    // Implementation of ID generation logic
+    return 'generated-unique-id'; // Example placeholder
   }
 
   showResultDialog(isSuccess: boolean): void {
@@ -135,7 +155,6 @@ export class MixedLetterGameComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      // בדוק אם כל המילים הוצגו
       if (this.results.length === this.currentCategory?.words.length) {
         this.router.navigate(['/summary'], { state: { points: this.totalPoints, results: this.results } });
       }
@@ -144,9 +163,6 @@ export class MixedLetterGameComponent implements OnInit {
 
   resetInput(): void {
     this.userInput = '';
-  }
-  navigateToSummary(): void {
-    this.router.navigate(['/summary'], { state: { points: this.totalPoints, results: this.results } });
   }
 
   confirmExit(): void {
