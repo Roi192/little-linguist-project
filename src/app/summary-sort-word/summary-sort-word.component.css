@@ -1,50 +1,67 @@
-.summary-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 18px;
-    text-align: left;
-    background-color: #f9f9f9;
+.summary-container {
+    padding: 20px;
+    background-color: #f0f8ff; /* צבע רקע בהיר ונעים */
     border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center; /* מרכז את התוכן */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* הוספת צל למיכל */
   }
   
-  .summary-table thead {
-    background-color: #ffeb3b;
+  .summary-title {
+    color: #4caf50; /* צבע ירוק לכותרת */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* גופן ידידותי לילדים */
+    font-size: 2em; /* גודל טקסט גדול יותר */
   }
   
-  .summary-table th,
-  .summary-table td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
+  .summary-points {
+    font-size: 24px; /* גודל טקסט גדול יותר */
+    color: #ff9800; /* צבע כתום להדגשה */
   }
   
-  .summary-table tbody tr {
-    transition: background-color 0.3s ease;
+  .summary-table {
+    margin: 20px auto; /* הוספת רווח למרכז */
+    width: 90%; /* הצגת טבלה ברוחב נמוך יותר */
+    border-collapse: collapse; /* יישור גבולות */
   }
   
-  .summary-table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+  .table-header {
+    background-color: #2196f3; /* צבע רקע כחול לכותרות */
+    color: white; /* צבע טקסט לבן */
+    font-weight: bold; /* טקסט מודגש */
   }
   
-  .summary-table tbody tr:hover {
-    background-color: #ffe082;
+  .table-cell {
+    font-size: 18px; /* גודל טקסט בינוני */
   }
   
-  .summary-table th {
-    font-size: 20px;
-    background-color: #ffca28;
-    color: #333;
+  .result-icon {
+    color: #4caf50; /* צבע ירוק להצלחה */
+    font-size: 24px; /* גודל אייקון גדול יותר */
   }
   
-  .summary-table td {
-    font-size: 18px;
-    color: #555;
+  .result-icon[mat-icon]:last-child {
+    color: #f44336; /* צבע אדום לכישלון */
   }
   
-  .summary-table td:last-child {
-    text-align: center;
-    font-size: 24px;
+  /* כפתורים */
+  .back-button {
+    background-color: #ffeb3b; /* צבע רקע צהוב */
+    color: #000; /* צבע טקסט שחור */
+    font-size: 1.2em; /* גודל טקסט */
+    border-radius: 5px; /* פינות מעוגלות */
+    padding: 10px 20px; /* רווח פנימי */
+    margin-top: 20px; /* רווח מעל הכפתור */
+    transition: background-color 0.3s; /* שינוי צבע בהעברה */
   }
   
+  .back-button:hover {
+    background-color: #ffd54f; /* שינוי צבע בהעברה */
+  }
+  .success-icon {
+    color: #4caf50; /* צבע הצלחה ירוק */
+    font-size: 24px; /* גודל אייקון */
+  }
+  
+  .red-icon {
+    color: #f44336; /* צבע כישלון אדום */
+    font-size: 24px; /* גודל אייקון */
+  }

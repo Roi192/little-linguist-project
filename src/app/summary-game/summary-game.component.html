@@ -1,26 +1,43 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <!-- English Word Column -->
-  <ng-container matColumnDef="english">
-    <th mat-header-cell *matHeaderCellDef> English Word </th>
-    <td mat-cell *matCellDef="let element"> {{ element.english }} </td>
-  </ng-container>
+<div class="summary-container">
+  <h1 class="summary-title">🎉 Game Summary 🎉</h1>
+  <p class="summary-points">🟡 Points: <strong>{{ points }}</strong></p>
 
-  <!-- Category Column -->
-  <ng-container matColumnDef="category">
-    <th mat-header-cell *matHeaderCellDef> Category </th>
-    <td mat-cell *matCellDef="let element"> {{ element.category }} </td>
-  </ng-container>
+  <div class="points-container">
+    
+    <p class="correct-words">
+      You translated {{correctCount}} out of {{totalCount}} words correctly.
+    </p>
+  </div>
 
-  <!-- Success Column -->
-  <ng-container matColumnDef="success">
-    <th mat-header-cell *matHeaderCellDef> Result </th>
-    <td mat-cell *matCellDef="let element">
-      <mat-icon *ngIf="element.success">check_circle</mat-icon>
-      <mat-icon *ngIf="!element.success">cancel</mat-icon>
-    </td>
-  </ng-container>
+  <table mat-table [dataSource]="results" class="mat-elevation-z8 summary-table">
+    <!-- Hebrew Word Column -->
+    <ng-container matColumnDef="hebrew">
+      <th mat-header-cell *matHeaderCellDef class="summary-header">Hebrew Word</th>
+      <td mat-cell *matCellDef="let result" class="summary-cell">{{result.hebrew}}</td>
+    </ng-container>
 
-  <!-- Table Header and Row Definitions -->
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+    <!-- English Word Column -->
+    <ng-container matColumnDef="english">
+      <th mat-header-cell *matHeaderCellDef class="summary-header">English Word</th>
+      <td mat-cell *matCellDef="let result" class="summary-cell">{{result.english}}</td>
+    </ng-container>
+
+    <!-- Result Icon Column -->
+    <ng-container matColumnDef="result">
+      <th mat-header-cell *matHeaderCellDef class="summary-header">Result</th>
+      <td mat-cell *matCellDef="let result" class="summary-cell">
+        <mat-icon *ngIf="result.success" class="success-icon">check_circle</mat-icon>
+        <mat-icon *ngIf="!result.success" color="warn" class="red-icon">cancel</mat-icon>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['hebrew', 'english', 'result']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['hebrew', 'english', 'result'];"></tr>
+  </table>
+
+  <div class="button-container">
+    <button mat-raised-button class="back-button" (click)="router.navigate(['/choose-game'])">
+      🏡 Back to Game Selection
+    </button>
+  </div>
+</div>

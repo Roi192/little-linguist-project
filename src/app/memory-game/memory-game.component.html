@@ -1,0 +1,40 @@
+<h1 class="game-title">Memory Game</h1>
+<mat-icon class="exit-icon" (click)="confirmExit()">logout</mat-icon> <!-- אייקון יציאה -->
+
+<div class="points-container">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- אייקון כוכב להצגת נקודות -->
+  <div class="points-content">
+    <i class="fas fa-star" style="color: gold; font-size: 24px;"></i>
+    <span class="summary-points"><strong>{{ points }}</strong></span> <!-- טקסט הנקודות -->
+  </div>
+</div>
+
+<div class="memory-game-container">
+  <div class="card-grid">
+    <mat-card *ngFor="let card of shuffledWords; let i = index" class="card" [class.flipped]="card.flipped"
+              [class.matched]="card.matched" (click)="flipCard(i)">
+      <div class="card-inner">
+        <ng-container *ngIf="card.flipped || card.matched; else hiddenCard">
+          <div class="card-content">
+            {{ card.origin }}
+          </div>
+        </ng-container>
+        <ng-template #hiddenCard>
+          <div class="card-back">
+            ?
+          </div>
+        </ng-template>
+      </div>
+    </mat-card>
+  </div>
+</div>
+
+<div class="progress-container">
+  <div class="progress-info">
+    <span>Successes: {{ matchedPairs }}</span>
+    <mat-progress-bar mode="determinate" [value]="(matchedPairs / totalPairs) * 100"></mat-progress-bar>
+    <span>Total Pairs: {{ totalPairs }}</span>
+  </div>
+</div>

@@ -10,6 +10,9 @@ import { TriviaGameComponent } from './trivia-game/trivia-game.component';
 import { NgModule } from '@angular/core';
 import { SummaryGameComponent } from './summary-game/summary-game.component';
 import { SummarySortWordComponent } from './summary-sort-word/summary-sort-word.component';
+import { MemoryGameComponent } from './memory-game/memory-game.component';
+import { SummaryMemoryGameComponent } from './summary-memory-game/summary-memory-game.component';
+import { MatchingGameComponent } from './matching-game/matching-game.component';
 
 export const routes: Routes = [
   { path: '', component: DashbordComponent },
@@ -23,6 +26,9 @@ export const routes: Routes = [
   { path: 'trivia/:id', component: TriviaGameComponent },
   { path: 'summary', component: SummaryGameComponent },
   { path: 'summary-sort-word', component: SummarySortWordComponent },
+  { path: 'memory-game/:id', component: MemoryGameComponent},
+  { path: 'summary-memory-game', component: SummaryMemoryGameComponent },
+  { path: 'matching-game/:id', component: MatchingGameComponent},
 ];
 
 @NgModule({

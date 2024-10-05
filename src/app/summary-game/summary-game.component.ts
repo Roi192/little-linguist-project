@@ -14,13 +14,16 @@ import { Router } from '@angular/router';
 })
 export class SummaryGameComponent implements OnInit {
   points: number = 0;
-  displayedColumns: string[] = ['english', 'category', 'success'];
+  displayedColumns: string[] = ['hebrew', 'english', 'category', 'success'];
   dataSource = new MatTableDataSource<any>();
   results: { hebrew: string, english: string, category: string, success: boolean }[] = [];
+  
+  correctCount: number = 0; // הוספתי את המשתנה הזה
+  totalCount: number = 0; // הוספתי את המשתנה הזה
 
-  public router: Router;
+  public router: Router; // שנה ל-public
 
-  constructor(router: Router) {
+  constructor(router: Router) { 
     this.router = router;
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as {
@@ -32,8 +35,14 @@ export class SummaryGameComponent implements OnInit {
       this.points = state.points;
       this.results = state.results;
       this.dataSource.data = this.results;
+      this.calculateCounts(); // הוספתי קריאה למתודה לחישוב סך הניחושים הנכונים
     }
   }
 
   ngOnInit(): void {}
+
+  private calculateCounts() {
+    this.totalCount = this.results.length; // סך הכל המילים
+    this.correctCount = this.results.filter(result => result.success).length; // סך הכל הניחושים הנכונים
+  }
 }

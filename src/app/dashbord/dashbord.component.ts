@@ -34,7 +34,8 @@ export class DashbordComponent implements OnInit {
   // Mapping between gameId and game names
   gameNamesMap: { [key: string]: string } = {
     'game-1': 'Mixed Letters',
-    'game-2': 'Word Sorter'
+    'game-2': 'Word Sorter',
+    'game-3': 'Memory Game'
     // Add more mappings as per your games
   };
 

@@ -1,59 +1,36 @@
 html, body {
-    height: 100%; /* להבטיח שהרקע ימלא את כל הדף */
+    height: 100%;
     margin: 0;
 }
 
 body {
-    background-color: #f0f4c3;  /* צבע רקע של כל הדף */
+    background-color: #f0f8ff
 }
 
 .game-container {
     display: flex;
-    flex-direction: column; /* לסדר את האלמנטים בעמודה */
-    justify-content: space-between; /* למלא את כל החלל */
+    flex-direction: column;
     align-items: center;
     padding: 20px;
     text-align: center;
-    height: 100%; /* להבטיח שהגובה של הקונטיינר יתפוס את כל החלל */
-    background-color: #f0f4c3; 
+    height: 100%;
+    background-color: #f0f8ff;
     position: relative;
 }
+
 .exit-icon {
     position: absolute;
-    top: 20px; /* קצת יותר מרווח מהחלק העליון */
-    left: 20px; /* קצת יותר מרווח מהשמאל */
-    font-size: 2em; /* גודל גדול וברור */
-    color: #f44336; /* צבע אדום כהה לדגש */
+    top: 20px;
+    left: 20px;
+    font-size: 2em;
+    color: #f44336;
     cursor: pointer;
-  }
-  .progress-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    max-width: 600px;
-  }
-  
-  .progress-info-left, .progress-info-right {
-    font-size: 1.5em;
-    color: #388e3c;
-  }
-  
-  mat-progress-bar {
-    flex-grow: 1;
-    height: 25px;
-    border-radius: 5px;
-  }
-  
-  .progress-info {
-    font-size: 1.5em;
-    color: #388e3c;
-  }
-  
+}
 
 .game-title {
-    color: green; /* צבע הכותרת ירוק */
+    color: #4caf50;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 2em;
     margin-bottom: 20px;
 }
 
@@ -61,60 +38,70 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5em; /* להגדיל את גודל הטקסט */
+    font-size: 1.5em;
+    margin-bottom: 20px;
 }
 
-.dollar-icon {
-    color: gold;
-    font-size: 1em;
-    margin-right: 10px;
-    font-weight: bold;
-  }
 .question {
-    font-size: 1.2em;
+    font-size: 1.5em;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .button-container {
     display: flex;
     justify-content: center;
-    gap: 10px; /* מרווח בין הכפתורים */
+    gap: 10px;
+    margin-bottom: 20px; /* רווח לפני ה-progress bar */
+}
+
+.yes-button, .no-button {
+    min-width: 100px;
+    font-size: 1.2em;
 }
 
 .yes-button {
-    background-color: green; /* צבע ירוק לכפתור 'כן' */
-    color: white; /* צבע טקסט לבן */
+    background-color: green;
+    color: white;
 }
 
 .no-button {
-    background-color: red; /* צבע אדום לכפתור 'לא' */
-    color: white; /* צבע טקסט לבן */
-}
-
-.exit-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    background-color: red;
+    color: white;
 }
 
 .progress-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-top: auto; /* לדחוף את הפרוגרס בר לתחתית */
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 600px;
+}
+  
+.progress-info-left, .progress-info-right {
+    font-size: 1.5em;
+    color: #388e3c;
 }
 
-.progress-info {
-    font-weight: bold;
+mat-progress-bar {
+    flex-grow: 1;
+    height: 25px;
+    border-radius: 5px;
 }
+
 .highlight {
-    font-weight: bold; /* מדגיש את המילה */
-    font-size: 22px; /* גודל טקסט גדול יותר */
-    color: #3f51b5; /* צבע שונה להדגשה */
+    font-weight: bold;
+    font-size: 35px;
+    color: #3f51b5;
 }
 
 .category {
-    font-weight: bold; /* מדגיש את שם הקטגוריה */
-    font-size: 20px; /* גודל טקסט גדול יותר */
-    color: #ff4081; /* צבע שונה לשם הקטגוריה */
+    font-weight: bold;
+    font-size: 35px;
+    color: #ff4081;
 }
+.summary-points {
+    font-size: 24px; /* גודל טקסט גדול יותר */
+    color: #ff9800; /* צבע כתום להדגשה */
+  }

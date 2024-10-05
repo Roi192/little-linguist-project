@@ -16,12 +16,13 @@ import { WordsSorterGameComponent } from '../words-sorter-game/words-sorter-game
   styleUrl: './summary-sort-word.component.css'
 })
 export class SummarySortWordComponent implements OnInit  {
-  
   points: number = 0;
   summaryWords: { english: string; category: string; success: boolean }[] = [];
   displayedColumns: string[] = ['english', 'category', 'result']; // הגדרת העמודות
+  public router: Router; // עדכון למאפיין ציבורי
 
-  constructor(private router: Router) {
+  constructor(router: Router) {
+    this.router = router; // אתחול של router
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as {
       points: number;

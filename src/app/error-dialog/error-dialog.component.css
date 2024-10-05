@@ -1,0 +1,48 @@
+.dialog-title {
+    background-color: #FF6F61; /* צבע ורוד-סגול */
+    color: white; /* צבע טקסט לבן */
+    text-align: center;
+    border-radius: 8px; /* פינות מעוגלות */
+    padding: 16px; /* רווחים פנימיים */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* גופן ידידותי */
+  }
+  
+  .dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* מרכז את התוכן */
+    font-size: 18px; /* גודל טקסט */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* גופן ידידותי */
+    color: #333; /* צבע טקסט כהה */
+  }
+  
+  .error-icon {
+    color: #FF6F61; /* צבע האייקון */
+    font-size: 60px; /* גודל האייקון גדול יותר */
+    margin-bottom: 16px; /* רווח מתחת לאייקון */
+  }
+  
+  .dialog-message {
+    margin: 0; /* אין רווחים */
+    text-align: center; /* מרכז את הטקסט */
+  }
+  
+  mat-dialog-actions {
+    display: flex;
+    justify-content: center; /* מרכז את הכפתור */
+  }
+  
+  .close-button {
+    background-color: #4CAF50; /* צבע ירוק לכפתור */
+    color: white; /* צבע טקסט לבן */
+    padding: 12px 24px; /* רווחים סביב הכפתור */
+    border-radius: 8px; /* פינות מעוגלות */
+    font-size: 16px; /* גודל טקסט */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* גופן ידידותי */
+    transition: background-color 0.3s; /* אנימציה על שינוי צבע */
+  }
+  
+  .close-button:hover {
+    background-color: #45a049; /* צבע ירוק כהה בזמן ריחוף */
+  }
+  

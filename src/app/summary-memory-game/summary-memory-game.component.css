@@ -1,0 +1,58 @@
+.summary-container {
+    text-align: center; /* ממרכז את כל התוכן */
+    padding: 20px; /* רווח פנימי */
+    background-color: #f0f8ff; /* צבע רקע בהיר */
+    border-radius: 10px; /* פינות מעוגלות */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* צל עדין */
+    max-width: 600px; /* גובה מקסימלי */
+    margin: 0 auto; /* מרכז את הקונטיינר */
+  }
+  
+  .summary-title {
+    font-size: 2.5rem; /* גודל גופן גדול */
+    color: #ff6f61; /* צבע כתום-ורוד */
+    margin: 20px 0; /* רווח מעל ומתחת */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* גופן ידידותי */
+  }
+  
+  .points-container {
+    display: flex; /* מציג את הנקודות והאייקון בשורה */
+    justify-content: center; /* מרכז את התוכן */
+    align-items: center; /* ממרכז את האייקון והטקסט */
+    font-size: 1.5rem; /* גודל גופן גדול */
+    margin-bottom: 20px; /* רווח מתחת */
+  }
+  
+  .summary-info {
+    font-size: 1.5rem; /* גודל גופן גדול */
+    color: #4caf50; /* צבע ירוק */
+    margin-bottom: 30px; /* רווח מתחת */
+  }
+  
+  .matched-pairs, .attempts {
+    font-size: 2rem; /* גודל גופן גדול יותר */
+    margin: 10px 0; /* רווח בין שורות */
+  }
+  
+  .smiley {
+    font-size: 2.5rem; /* גודל סמיילי גדול */
+  }
+  
+  .button-container {
+    display: flex; /* מציג את הכפתור בשורה */
+    justify-content: center; /* מרכז את הכפתור */
+  }
+  
+  .back-button {
+    background-color: #3f51b5; /* צבע הכפתור */
+    color: white; /* צבע הטקסט */
+    font-size: 1.2rem; /* גודל גופן הכפתור */
+    padding: 10px 20px; /* רווח פנימי לכפתור */
+    border-radius: 5px; /* פינות מעוגלות לכפתור */
+    transition: background-color 0.3s; /* אפקט שינוי צבע */
+  }
+  
+  .back-button:hover {
+    background-color: #303f9f; /* צבע הכפתור בהעברת עכבר */
+  }
+  

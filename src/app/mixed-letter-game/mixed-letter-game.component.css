@@ -1,135 +1,159 @@
 html, body {
-    height: 100%;
-    margin: 0;
-  }
-  
-  .game-container {
-    background-color: #f0f4c3; 
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-  
-  .exit-icon {
-    position: absolute;
-    top: 20px; /* קצת יותר מרווח מהחלק העליון */
-    left: 20px; /* קצת יותר מרווח מהשמאל */
-    font-size: 2em; /* גודל גדול וברור */
-    color: #f44336; /* צבע אדום כהה לדגש */
-    cursor: pointer;
-  }
-  
-  
-  .game-title {
-    font-size: 3em;
-    color: #388e3c;
-    margin-bottom: 30px;
-  }
-  
-  .score-display {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2em;
-    color: #388e3c;
-    margin-bottom: 20px;
-  }
-  
-  .dollar-icon {
-    color: gold;
-    font-size: 2em;
-    margin-right: 10px;
+  height: 100%;
+  margin: 0;
+}
+
+.game-container {
+  background-color: #f0f8ff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  justify-content: flex-start; /* הכותרת תהיה בראש */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+ 
+}
+
+.exit-icon {
+  position: absolute;
+  top: 20px; /* קצת יותר מרווח מהחלק העליון */
+  left: 20px; /* קצת יותר מרווח מהשמאל */
+  font-size: 2em; /* גודל גדול וברור */
+  color: #f44336; /* צבע אדום כהה לדגש */
+  cursor: pointer;
+}
+
+
+.game-title {
+  color: #4caf50;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+
+.score-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  color: #388e3c;
+  margin-bottom: 20px;
+}
+
+.dollar-icon {
+  color: gold;
+  font-size: 2em;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.hebrew-word {
+  font-size: 2.5em;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.shuffled-word {
+  font-size: 2.2em;
+  color: #000;
+  letter-spacing: 6px;
+  margin-bottom: 30px;
+}
+
+.word-input {
+  padding: 15px;
+  font-size: 1.8em;
+  border: 3px solid #388e3c;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 30px;
+  background-color: #fff;
+  color: #000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.word-input::placeholder {
+  color: #9e9e9e;
+  font-size: 1.2em;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.game-button {
+  padding: 15px 30px;
+  font-size: 1.5em;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.submit-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.reset-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.game-button:hover {
+  opacity: 0.9;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* מונע גלילה */
+}
+.progress-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.progress-info-left, .progress-info-right {
+  font-size: 1.5em;
+  color: #388e3c;
+}
+
+mat-progress-bar {
+  flex-grow: 1;
+  height: 25px;
+  border-radius: 5px;
+}
+
+.progress-info {
+  font-size: 1.5em;
+  color: #388e3c;
+}
+.summary-points {
+  font-size: 24px; /* גודל טקסט גדול יותר */
+  color: #ff9800; /* צבע כתום להדגשה */
+}
+.hebrew-word {
+  font-size: 2em;
+    color: #000000; /* שחור למילה בעברית */
     font-weight: bold;
-  }
-  
-  .hebrew-word {
-    font-size: 2.5em;
-    color: #000;
     margin-bottom: 20px;
-  }
-  
-  .shuffled-word {
-    font-size: 2.2em;
-    color: #000;
-    letter-spacing: 6px;
-    margin-bottom: 30px;
-  }
-  
-  .word-input {
-    padding: 15px;
-    font-size: 1.8em;
-    border: 3px solid #388e3c;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 500px;
-    margin-bottom: 30px;
-    background-color: #fff;
-    color: #000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .word-input::placeholder {
-    color: #9e9e9e;
-    font-size: 1.2em;
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 30px;
-  }
-  
-  .game-button {
-    padding: 15px 30px;
-    font-size: 1.5em;
-    font-weight: bold;
-    border-radius: 10px;
-  }
-  
-  .submit-button {
-    background-color: #4caf50;
-    color: white;
-  }
-  
-  .reset-button {
-    background-color: #f44336;
-    color: white;
-  }
-  
-  .game-button:hover {
-    opacity: 0.9;
-  }
-  
-  .progress-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    max-width: 600px;
-  }
-  
-  .progress-info-left, .progress-info-right {
-    font-size: 1.5em;
-    color: #388e3c;
-  }
-  
-  mat-progress-bar {
-    flex-grow: 1;
-    height: 25px;
-    border-radius: 5px;
-  }
-  
-  .progress-info {
-    font-size: 1.5em;
-    color: #388e3c;
-  }
-  
+}
+.shuffled-word {
+  font-size: 2em;
+  color: #3f51b5; /* כחול כהה למילה המבולגנת */
+  font-weight: bold;
+  margin-bottom: 20px;
+}

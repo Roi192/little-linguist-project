@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GameProfile } from '../../shared/model/GameProfile';
-import { Firestore, addDoc, collection, deleteDoc, doc, getDocs, setDoc, updateDoc, writeBatch } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc, writeBatch } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -22,22 +22,39 @@ export class GameService {
     return this.currentGameId;
   }
 
-
   // מתודה להחזרת המשחקים מתוך Firestore
   getGames(): Promise<GameProfile[]> {
     const gamesCollection = collection(this.firestore, 'games');
     return getDocs(gamesCollection).then(snapshot => {
-      return snapshot.docs.map(doc => {
+      const uniqueGames: { [key: string]: GameProfile } = {};
+      
+      snapshot.docs.forEach(doc => {
         const data = doc.data() as GameProfile;
-        return { ...data, GameId: doc.id }; // משייכים את ה-ID של המסמך מה-Firestore ל-GameId
+        const gameId = doc.id;
+  
+        // מסנן כפילויות לפי GameId
+        if (!uniqueGames[gameId]) {
+          uniqueGames[gameId] = { ...data, GameId: gameId };
+        }
       });
+  
+      return Object.values(uniqueGames);
     });
   }
 
   // מתודה להוספת משחק ל-Firestore
-  addGame(game: GameProfile) {
+  async addGame(game: GameProfile) {
     const gamesCollection = collection(this.firestore, 'games');
-    return addDoc(gamesCollection, { ...game });
+   // return addDoc(gamesCollection, { ...game });
+   const gameDocs = await getDocs(gamesCollection);
+  
+  const existingGame = gameDocs.docs.find(doc => doc.data()['GameName'] === game.GameName);
+  if (!existingGame) {
+    await addDoc(gamesCollection, { ...game });
+    console.log(`Game ${game.GameName} added successfully`);
+  } else {
+    console.log(`Game ${game.GameName} already exists, not adding.`);
+  }
   }
 
   // כאן נוסיף את כל המשחקים שהיו לך
@@ -46,19 +63,20 @@ export class GameService {
       new GameProfile("game1", 'Word Sorting', 'Sort words into categories', '/word-sorter'),
       new GameProfile('game2', 'Mixed Letter', 'Arrange jumbled letters to form words', '/mixed-letter'),
       new GameProfile('game3', 'Trivia', 'Choose every words translation from a list of 4 options', '/Trivia'),
-   ];
-
-    defaultGames.forEach((game) => {
-      this.addGame(game)
-        .then(() => {
-          console.log(`Game ${game.GameName} added successfully`);
-        })
-        .catch((error) => {
-          console.error(`Error adding game ${game.GameName}:`, error);
-        });
+    ];
+  
+    defaultGames.forEach(async (game) => {
+      const existingGames = await this.getGames();
+      const gameExists = existingGames.some(existingGame => existingGame.GameName === game.GameName);
+  
+      if (!gameExists) {
+        await this.addGame(game);
+        console.log(`Game ${game.GameName} added successfully`);
+      } else {
+        console.log(`Game ${game.GameName} already exists, skipping addition.`);
+      }
     });
   }
-
 
   // מתודה לעדכון משחק קיים ב-Firestore
   updateGame(gameId: string, game: Partial<GameProfile>): Promise<void> {
@@ -69,5 +87,17 @@ export class GameService {
   // מתודה למחיקת משחק מ-Firestore
   deleteGame(gameId: string): Promise<void> {
     return deleteDoc(doc(this.firestore, 'games', gameId));
+  }
+  getGameById(gameId: string): Promise<GameProfile | null> {
+    const gameDoc = doc(this.firestore, 'games', gameId);
+    return getDoc(gameDoc).then(doc => {
+      if (doc.exists()) {
+        const data = doc.data() as GameProfile;
+        return { ...data, GameId: doc.id }; // משייכים את ה-ID של המסמך מה-Firestore ל-GameId
+      } else {
+        console.warn(`No such game with ID: ${gameId}`);
+        return null; // במקרה שאין משחק
+      }
+    });
   }
 }

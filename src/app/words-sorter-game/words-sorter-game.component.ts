@@ -12,6 +12,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { GameResultService } from '../services/game-result.service';
 import { GameService } from '../services/game.service';
 import { GameResult } from '../../shared/model/GameResult';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
+import { GameProfile } from '../../shared/model/GameProfile';
 
 
 
@@ -38,6 +40,7 @@ import { GameResult } from '../../shared/model/GameResult';
     totalWords: number = 6; // Total number of words
     progress: number = 0;
     summaryWords: { english: string; category: string; success: boolean }[] = [];
+    totalPairs: number = 0;
   
     constructor(
       private categoriesService: CategoriesService,
@@ -62,6 +65,11 @@ import { GameResult } from '../../shared/model/GameResult';
       });
     }
   
+    // נבדוק ש- shuffledWords לא ריק וש- currentWordIndex תקין
+    isCurrentWordValid(): boolean {
+      return this.shuffledWords.length > 0 && this.currentWordIndex < this.shuffledWords.length;
+    }
+  
     getRandomCategory(): Category {
       let newCategory;
       do {
@@ -76,12 +84,18 @@ import { GameResult } from '../../shared/model/GameResult';
     }
   
     selectWordsForGame() {
-      this.randomCategory = this.getRandomCategory(); // Get a random category
       const currentCategoryWords = this.getRandomWordsFromCategory(this.currentCategory!, 3);
-      const randomCategoryWords = this.getRandomWordsFromCategory(this.randomCategory, 3);
-
-      if (currentCategoryWords.length < 3 || randomCategoryWords.length < 3) {
-        console.error('Not enough words in one of the categories to start the game.');
+      let randomCategoryWords: { english: string; hebrew: string }[] = [];
+  
+      do {
+        this.randomCategory = this.getRandomCategory(); // Get a random category
+        randomCategoryWords = this.getRandomWordsFromCategory(this.randomCategory, 3);
+      } while (randomCategoryWords.length < 3); // Keep getting a new random category until it has at least 3 words
+  
+      if (currentCategoryWords.length < 3) {
+        this.dialog.open(ErrorDialogComponent, {
+          data: { message: 'Each category must contain at least 3 words to start the game.' }
+        });
         return; 
       }
   
@@ -104,16 +118,18 @@ import { GameResult } from '../../shared/model/GameResult';
     }
   
     checkAnswer(isYes: boolean) {
+      if (!this.isCurrentWordValid()) return; // בודק אם המילה הנוכחית תקפה לפני שמבצע את הבדיקה
+  
       const currentWord = this.shuffledWords[this.currentWordIndex];
       const isCorrect = (this.currentCategory?.words.some((word) => word.origin === currentWord.english)) === isYes;
-
+  
       const category = this.currentCategory?.words.some((word) => word.origin === currentWord.english)
-      ? this.currentCategory?.name
-      : this.randomCategory?.name;
+        ? this.currentCategory?.name
+        : this.randomCategory?.name;
   
       this.summaryWords.push({
         english: currentWord.english,
-       category: category || '',
+        category: category || '',
         success: isCorrect,
       });
   
@@ -154,8 +170,7 @@ import { GameResult } from '../../shared/model/GameResult';
   
       this.gameResultService.addGameResult(gameResult).then(() => {
         console.log('Game result added successfully');
-       // this.router.navigate(['/summary-sort-word'], { state: { points: this.points, results: this.summaryWords } }); // עדכן ל-summaryWords
-       this.router.navigate(['/summary-sort-word'], { state: { points: this.points, results: this.summaryWords } });
+        this.router.navigate(['/summary-sort-word'], { state: { points: this.points, results: this.summaryWords } });
       }).catch((error) => {
         console.error('Error adding game result:', error);
       });

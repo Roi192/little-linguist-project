@@ -1,0 +1,122 @@
+/* קונטיינר המשחק */
+.memory-game-container {
+    background-color: #f0f8ff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    justify-content: flex-start; /* הכותרת תהיה בראש */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100%;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+}
+.exit-icon {
+    position: absolute;
+    top: 80px; /* מרווח מהחלק העליון */
+    left: 20px; /* מרווח מהשמאל */
+    font-size: 2em; /* גודל גדול וברור */
+    color: #f44336; /* צבע אדום כהה לדגש */
+    cursor: pointer;
+}
+.points-container {
+    display: flex;
+    justify-content: center; /* מרכז את התוכן */
+    align-items: center;
+    flex-direction: column; /* סדר את התוכן בעמודה */
+    margin-bottom: 20px; /* רווח מתחת */
+}
+.points-content {
+    display: flex;
+    align-items: center; /* מרכז את התוכן */
+}
+.summary-points {
+    font-size: 24px; /* גודל טקסט גדול יותר */
+    color: #ff9800; /* צבע כתום להדגשה */
+}
+
+/* כותרת המשחק */
+.game-title {
+    text-align: center; /* טקסט במרכז */
+    color: #2e8b57; /* צבע ירוק כהה */
+    font-size: 2.5rem; /* גודל טקסט גדול */
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+/* קונטיינר ניקוד */
+.score-container {
+    text-align: center; /* טקסט במרכז */
+    margin-bottom: 20px; /* רווח מתחת */
+    font-size: 1.5rem; /* גודל טקסט */
+    color: #ff4500; /* צבע כתום */
+}
+
+/* רשת הכרטיסים */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* עד 4 כרטיסיות בשורה */
+    gap: 10px; /* רווחים בין הכרטיסים */
+}
+
+/* כרטיסים */
+.card {
+    width: 100px;
+    height: 100px;
+    background-color: #87ceeb; /* צבע כחול שמיים */
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s; /* אנימציה של הפיכה */
+}
+
+/* מצב ההיפוך */
+.card.flipped {
+    transform: rotateY(360deg);
+}
+
+/* תוכן הכרטיס */
+.card-content {
+    font-size: 1.5rem;
+    color: #fff; /* צבע לבן */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* צד אחורי של הכרטיס */
+.card-back {
+    font-size: 2rem;
+    color: #000; /* צבע שחור */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* קונטיינר ההתקדמות */
+.progress-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* מידע על ההתקדמות */
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%; /* רוחב קבוע */
+    margin: 0 auto; /* מרכז */
+}
+
+/* שורת ההתקדמות */
+mat-progress-bar {
+    width: 70%; /* רוחב שורת ההתקדמות */
+    background-color: #ffd700; /* צבע זהב */
+}

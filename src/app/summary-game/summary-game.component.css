@@ -1,32 +1,90 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* מונע גלילה */
+}
+.summary-container {
+  background-color: #f0f8ff; /* רקע בהיר */
+  border-radius: 10px; /* פינות מעוגלות */
+  height: 100vh; 
+  
+  margin: auto; /* מרכז את הקונטיינר */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* צל */
+  text-align: center;
+}
+.summary-points {
+  font-size: 24px; /* גודל טקסט גדול יותר */
+  color: #ff9800; /* צבע כתום להדגשה */
+}
+.summary-title {
+  text-align: center; /* מרכז את הכותרת */
+  color: #3f51b5; /* צבע כותרת */
+  font-family: 'Comic Sans MS', cursive, sans-serif; /* גופן ידידותי */
+  font-size: 2.5em; /* גודל גופן גדול */
+}
+
 .summary-table {
-  width: 100%;
-  margin-top: 20px;
+  width: 100%; /* רוחב מלא */
+  margin-top: 20px; /* רווח מעל השולחן */
 }
 
-th.mat-header-cell {
-  background-color: #ffeb3b;
-  color: #333;
-  font-size: 18px;
-  text-align: left;
+.summary-header {
+  background-color: #3f51b5; /* צבע רקע של הכותרת */
+  color: white; /* צבע טקסט לבן */
+  font-weight: bold; /* טקסט מודגש */
 }
 
-td.mat-cell {
-  font-size: 16px;
+.summary-cell {
+  text-align: center; /* מרכז את התוכן בתאים */
+  padding: 10px; /* רווח פנימי */
+  font-family: 'Comic Sans MS', cursive, sans-serif; /* גופן ידידותי */
 }
 
-.mat-icon {
-  font-size: 24px;
-  vertical-align: middle;
+.success-icon {
+  color: #4caf50; /* צבע הצלחה ירוק */
+  font-size: 24px; /* גודל אייקון */
 }
 
-.mat-header-row, .mat-row {
-  background-color: #f5f5f5;
+.red-icon {
+  color: #f44336; /* צבע כישלון אדום */
+  font-size: 24px; /* גודל אייקון */
 }
 
-.mat-header-row {
-  border-bottom: 2px solid #ddd;
+.points-container {
+  text-align: center; /* מרכז את התוכן */
+  margin-top: 20px; /* רווח מעל */
 }
 
-.mat-row:hover {
-  background-color: #ffe082;
+.total-points {
+  font-size: 1.5em; /* גודל טקסט גדול יותר */
+  color: #ff5722; /* צבע כתום */
+}
+
+.button-container {
+  display: flex; /* מיישר את הכפתור למרכז */
+  justify-content: center; /* מרכז את הכפתור */
+  margin-top: 20px; /* רווח מעל הכפתור */
+}
+
+.back-button {
+  background-color: #ffeb3b; /* צבע רקע צהוב */
+  color: #000; /* צבע טקסט שחור */
+  font-size: 1.2em; /* גודל טקסט */
+  border-radius: 5px; /* פינות מעוגלות */
+  padding: 10px 20px; /* רווח פנימי */
+  cursor: pointer; /* מראה יד ליד הכפתור */
+}
+
+.dollar-icon {
+  vertical-align: middle; /* מיישר את האייקון עם הטקסט */
+  font-size: 1.2em; /* גודל אייקון */
+  color:  #fce301; /* צבע צהוב לאייקון */
+}
+
+.correct-words {
+  text-align: center; /* מרכז את הפסקה */
+  font-size: 1.2em; /* גודל טקסט */
+  color: #3f51b5; /* צבע טקסט */
+  margin-top: 5px; /* רווח מעל */
 }

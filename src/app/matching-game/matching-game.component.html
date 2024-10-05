@@ -1,0 +1,11 @@
+<div *ngIf="currentWord">
+    <h2>מילה: {{ currentWord.origin }}</h2>
+    <input [(ngModel)]="currentWord.guess" placeholder="כתוב את התשובה באנגלית" />
+    <button (click)="checkAnswer(currentWord.guess)">שלח תשובה</button>
+    <h3>ניקוד: {{ score }}</h3>
+  </div>
+  
+  <div *ngIf="!currentWord">
+    <h2>סיום המשחק!</h2>
+    <p>הניקוד שלך: {{ score }} מתוך {{ totalWords }}</p>
+  </div>

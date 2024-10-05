@@ -14,6 +14,7 @@ import { PointsDisplayComponent } from '../points-display/points-display.compone
 import { GameResultService } from '../services/game-result.service';
 import { GameResult } from '../../shared/model/GameResult';
 import { GameService } from '../services/game.service';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 
 
 
@@ -59,6 +60,10 @@ export class MixedLetterGameComponent implements OnInit {
       this.categoriesService.get(id).then((category) => {
         if (category) {
           this.currentCategory = category;
+          if (this.currentCategory.words.length < 3) {
+            this.openErrorDialog(); // Show error dialog
+            return; // Exit if not enough words
+          }
           this.wordPoints = Math.floor(100 / this.currentCategory.words.length);
           this.shuffleWords();
           this.setupNewWord();
@@ -172,6 +177,15 @@ export class MixedLetterGameComponent implements OnInit {
       if (result === true) {
         this.router.navigate(['/choose-game']);
       }
+    });
+  }
+  openErrorDialog(): void {
+    const dialogRef = this.dialog.open(ErrorDialogComponent, {
+      data: { message: 'The category must have at least 3 words to play.' } // Customize your error message
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.router.navigate(['/choose-game']); // Navigate back to choose-game after closing the dialog
     });
   }
 }
