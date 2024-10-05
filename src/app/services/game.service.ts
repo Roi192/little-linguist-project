@@ -45,37 +45,39 @@ export class GameService {
   // מתודה להוספת משחק ל-Firestore
   async addGame(game: GameProfile) {
     const gamesCollection = collection(this.firestore, 'games');
-   // return addDoc(gamesCollection, { ...game });
-   const gameDocs = await getDocs(gamesCollection);
-  
-  const existingGame = gameDocs.docs.find(doc => doc.data()['GameName'] === game.GameName);
-  if (!existingGame) {
-    await addDoc(gamesCollection, { ...game });
-    console.log(`Game ${game.GameName} added successfully`);
-  } else {
-    console.log(`Game ${game.GameName} already exists, not adding.`);
-  }
-  }
+    const gameDocs = await getDocs(gamesCollection);
+    
+    // בדיקת אם המשחק קיים לפי GameName (אפשר לבדוק גם לפי GameId או ליצור ID ייחודי)
+    const existingGame = gameDocs.docs.find(doc => doc.data()['GameName'] === game.GameName);
+    if (!existingGame) {
+        await addDoc(gamesCollection, { ...game });
+        console.log(`Game ${game.GameName} added successfully`);
+    } else {
+        console.log(`Game ${game.GameName} already exists, not adding.`);
+    }
+}
 
   // כאן נוסיף את כל המשחקים שהיו לך
-  addDefaultGames() {
-    const defaultGames: GameProfile[] = [
-      new GameProfile("game1", 'Word Sorting', 'Sort words into categories', '/word-sorter'),
-      new GameProfile('game2', 'Mixed Letter', 'Arrange jumbled letters to form words', '/mixed-letter'),
-      new GameProfile('game3', 'Trivia', 'Choose every words translation from a list of 4 options', '/Trivia'),
-    ];
   
-    defaultGames.forEach(async (game) => {
-      const existingGames = await this.getGames();
-      const gameExists = existingGames.some(existingGame => existingGame.GameName === game.GameName);
   
-      if (!gameExists) {
-        await this.addGame(game);
-        console.log(`Game ${game.GameName} added successfully`);
-      } else {
-        console.log(`Game ${game.GameName} already exists, skipping addition.`);
-      }
-    });
+    addDefaultGames() {
+      const defaultGames: GameProfile[] = [
+        new GameProfile("game1", 'Word Sorting', 'Sort words into categories', '/word-sorter'),
+        new GameProfile('game2', 'Mixed Letter', 'Arrange jumbled letters to form words', '/mixed-letter'),
+        new GameProfile('game3', 'Trivia', 'Choose every words translation from a list of 4 options', '/Trivia'),
+      ];
+  
+      defaultGames.forEach(async (game) => {
+          const existingGames = await this.getGames();
+          const gameExists = existingGames.some(existingGame => existingGame.GameName === game.GameName);
+          
+          if (!gameExists) {
+              await this.addGame(game);
+              console.log(`Game ${game.GameName} added successfully`);
+          } else {
+              console.log(`Game ${game.GameName} already exists, skipping addition.`);
+          }
+      });
   }
 
   // מתודה לעדכון משחק קיים ב-Firestore
